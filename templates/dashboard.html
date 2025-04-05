@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Dashboard</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <link rel="icon" href="data:,">
+
+  <!-- Main CSS File -->
+  <link href="assets/css/main.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: Logis
+  * Template URL: https://bootstrapmade.com/logis-bootstrap-logistics-website-template/
+  * Updated: Aug 07 2024 with Bootstrap v5.3.3
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body class="dashboard-page">
+
+  <header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center">
+
+      <a href="index.html" class="logo d-flex align-items-center me-auto">
+        <!-- Uncomment the line below if you also wish to use an image logo -->
+        <!-- <img src="assets/img/logo.png" alt=""> -->
+        <h1 class="sitename">RiskGuard</h1>
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="services.html">RBI Guidelines</a></li>
+          <li><a href="dashboard.html" class="active">Dashboard</a></li>
+          <li><a href="chat.html">Chat Now</a></li>
+          
+          </li>
+          
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+
+      <a class="btn-getstarted" href="get-a-quote.html">DetectNow</a>
+
+    </div>
+  </header>
+
+  <main class="main">
+
+    <!-- Page Title -->
+    <div class="page-title dark-background" data-aos="fade" style="background-image: url(assets/img/world-dotted-map.png);">
+      <div class="container position-relative">
+        <h1>Dashboard</h1>
+        <p>Real-Time Insights into Fraud Trends and Transactions</p>
+        <nav class="breadcrumbs">
+          <ol>
+            <li><a href="index.html">Home</a></li>
+            <li class="current">Dashboard</li>
+          </ol>
+        </nav>
+      </div>
+    </div><!-- End Page Title -->
+
+    <section id="fraud-dashboard" class="fraud-dashboard section" style="background-color: #FFFFFF; padding: 40px;">
+      <div class="container section-title text-center">
+        <h2>Fraud Detection Analysis</h2>
+        <p>Weekly transaction trends and fraud statistics.</p>
+      </div>
+
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6">
+            <canvas id="weeklyTransactionChart"></canvas>
+            </div>
+          <div class="col-lg-6">
+            <canvas id="fraudTypePieChart"></canvas>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-4">
+          <div class="col-lg-6">
+            <canvas id="fraudTrendLineChart"></canvas>
+          </div>
+          <div class="col-lg-6">
+            <canvas id="fraudScatterPlot"></canvas>
+          </div>
+        </div>
+        <div class="row mt-4">
+          <div class="col-lg-6">
+            <canvas id="fraudHistogram"></canvas>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const weeklyTransactionCtx = document.getElementById("weeklyTransactionChart").getContext("2d");
+      const fraudPieCtx = document.getElementById("fraudTypePieChart").getContext("2d");
+      const fraudLineCtx = document.getElementById("fraudTrendLineChart").getContext("2d");
+      const fraudScatterCtx = document.getElementById("fraudScatterPlot").getContext("2d");
+      const fraudHistoCtx = document.getElementById("fraudHistogram").getContext("2d");
+
+      new Chart(weeklyTransactionCtx, {
+        type: "bar",
+        data: {
+          labels: ["Week 1", "Week 2", "Week 3", "Week 4", "Week 5", "Week 6", "Week 7", "Week 8"],
+          datasets: [{
+            label: "Transactions",
+            data: [1200, 1500, 1800, 2200, 2500, 2700, 3000, 3200],
+            backgroundColor: ["#c8e6e9", "#A2DAE0", "#4242d2", "#06065D", "#e75b5b", "#ED0101","#A70107","#850106"],
+          }]
+        }
+      });
+
+      new Chart(fraudPieCtx, {
+        type: "pie",
+        data: {
+          labels: ["Credit Card", "UPI", "Online Banking", "Loan Fraud", "ATM Fraud"],
+          datasets: [{
+            data: [35, 20, 25, 10, 10],
+            backgroundColor: ["#A2DAE0", "#c8e6e9", "#e75b5b", "#4242d2", "#06065D"]
+          }]
+        }
+      });
+
+      new Chart(fraudLineCtx, {
+        type: "line",
+        data: {
+          labels: ["Week 1", "Week 2", "Week 3", "Week 4", "Week 5", "Week 6", "Week 7", "Week 8"],
+          datasets: [{
+            label: "Fraud Cases",
+            data: [30, 50, 70, 90, 120, 150, 180, 200],
+            borderColor: "#e74c3c",
+            fill: false
+          }]
+        }
+      });
+
+      new Chart(fraudScatterCtx, {
+        type: "scatter",
+        data: {
+          datasets: [{
+            label: "Fraud Amount vs Cases",
+            data: [{ x: 500, y: 10 }, { x: 1000, y: 20 }, { x: 2000, y: 40 }, { x: 3000, y: 60 }, { x: 4000, y: 80 }],
+            backgroundColor: ["#A2DAE0", "#c8e6e9", "#e75b5b", "#4242d2", "#06065D"],
+          }]
+        }
+      });
+
+      new Chart(fraudHistoCtx, {
+        type: "bar",
+        data: {
+          labels: ["0-1k", "1k-5k", "5k-10k", "10k-50k", "50k+"],
+          datasets: [{
+            label: "Number of Fraud Cases",
+            data: [200, 400, 600, 800, 1000],
+            backgroundColor: ["#A2DAE0", "#c8e6e9", "#e75b5b", "#4242d2", "#06065D"],
+            borderColor: ["#A2DAE0", "#c8e6e9", "#e75b5b", "#4242d2", "#06065D"],
+            borderWidth: 2
+          }]
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: { labels: { color: "#A2DAE0" } }
+          },
+          scales: {
+            x: { ticks: { color: "#e75b5b" } },
+            y: { ticks: { color: "#06065D" } }
+          }
+        }
+      });
+    });
+  </script>
+  </section><!-- /About Section -->
+
+</main>
+
+<!-- Scroll Top -->
+<a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+<!-- Preloader -->
+<div id="preloader"></div>
+
+<!-- Vendor JS Files -->
+<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="assets/vendor/php-email-form/validate.js"></script>
+<script src="assets/vendor/aos/aos.js"></script>
+<script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+<script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+<script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+<!-- Main JS File -->
+<script src="assets/js/main.js"></script>
+
+
+</body>
+</html>
