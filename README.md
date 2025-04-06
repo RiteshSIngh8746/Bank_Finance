@@ -1,2 +1,6 @@
-# Bank_Finance
-Project Include Credit Card Fraud Detection using Bulk File and Manual Input Similarly for UPI and also Have A Mock API For Live Fraud Detection
+Thanks for downloading this template!
+
+Template Name: Logis
+Template URL: https://bootstrapmade.com/logis-bootstrap-logistics-website-template/
+Author: BootstrapMade.com
+License: https://bootstrapmade.com/license/
